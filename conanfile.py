@@ -13,13 +13,13 @@ class FruitConan(ConanFile):
 
     # No exports necessary
 
-#    def source(self):
+    def source(self):
         # this will create a hello subfolder, take it into account
-#        self.run("git clone https://github.com/javierjeronimo/fruit.git")
+        self.run("git clone https://github.com/javierjeronimo/fruit.git")
 
     def build(self):
         cmake = CMake(self.settings)
-        self.run('cmake %s %s' % (self.conanfile_directory, cmake.command_line))
+        self.run('cmake %s/fruit %s' % (self.conanfile_directory, cmake.command_line))
         self.run("cmake --build . %s" % cmake.build_config)
         self.run("make -j")
 
